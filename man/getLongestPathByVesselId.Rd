@@ -5,7 +5,7 @@
 \title{The function aimed to find the longest two consecutives observations
 for a given vessel}
 \usage{
-getLongestPathByVesselId(vesselId)
+getLongestPathByVesselId(vesselId, maxTimeInterval = NA)
 }
 \description{
 The function aimed to find the longest two consecutives observations

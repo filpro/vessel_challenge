@@ -5,8 +5,8 @@ getVesselsByType = function(vesselType) {
   oCC(function(con) {
     table = tbl(con, "data") %>% 
       filter(SHIPTYPE == vesselType) %>% 
-      distinct(SHIP_ID) %>%
+      distinct(SHIP_ID, SHIPNAME) %>%
+      arrange(SHIP_ID, SHIPNAME) %>%
       collect()
-  }) %>%
-    pull(SHIP_ID)
+  })
 }

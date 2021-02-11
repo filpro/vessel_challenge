@@ -1,0 +1,26 @@
+#leaflet_map_ui-map {
+  height: calc(100vh - 40.5vh) !important;
+}
+
+.card {
+  width: 100% !important;
+}
+
+.time-slider {
+  width: 100% !important;
+}
+
+.shiny-input-container {
+  width: 100% !important;
+}
+
+.ui.form {
+  padding-top: 1vh;
+}
+
+
+@media only screen and (max-width: 600px) {
+  body {
+    display: block;
+  }
+}
