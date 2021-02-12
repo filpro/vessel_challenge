@@ -1,4 +1,5 @@
 #' @import dplyr
+#' @export
 getVesselById = function(id) {
   oCC = openCloseConnection()
   oCC(function(con) {
@@ -15,8 +16,14 @@ getVesselById = function(id) {
         ROW_NO_LAG = lag(ROW_NO),
         TIME_DIFF = DATETIME - lag(DATETIME)
       )  %>% 
-      rowwise() %>%
-      mutate(dist = distanceBetweenCoordinates(LON_LAG,LAT_LAG,LON,LAT)) %>%
-      ungroup()
+      (function(table) {
+        if(nrow(table) == 0) {
+          NULL
+        } else {
+          table %>% rowwise() %>%
+            mutate(dist = distanceBetweenCoordinates(LON_LAG,LAT_LAG,LON,LAT)) %>%
+            ungroup()
+        }
+      })
   })
 }

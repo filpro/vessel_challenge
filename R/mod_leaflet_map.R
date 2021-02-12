@@ -42,9 +42,9 @@ mod_leaflet_map_ui <- function(id){
       div(
         class = "content", 
         div(class = "header", icon("map"),"Longest distance between observations"),
-        div(class = "description", leafletOutput(ns("map"),width = "100%", height = "100%")),
-        style="z-index:0")
-    )
+        div(class = "description", leafletOutput(ns("map"),width = "100%", height = "100%"), style="height:100%"),
+        style="z-index:0; height:100%"),
+      style="height:100%")
   )
 }
 
@@ -67,51 +67,51 @@ mod_leaflet_map_server <- function(input, output, session, selectedVesselId, lon
     req(longestPath())
     longestPath() %...>% (function(object) {
       selectedVessel() %...>% (function(vessel) {
-          gcIntermediate(c(object$LON,object$LAT), c(object$LON_LAG,object$LAT_LAG),
-                         n=10, 
-                         addStartEnd=TRUE,
-                         sp=TRUE) %>%
-            leaflet() %>% 
-            addProviderTiles(providers$CartoDB.Positron) %>%
-            clearMarkers() %>%
-            addMarkers(
-              lng = object$LON_LAG, 
-              lat = object$LAT_LAG, 
-              popup = popupMessage(
-                object$ROW_NO_LAG, 
-                object$DATETIME_LAG, 
-                object$LON_LAG, 
-                object$LAT_LAG
-              )
-            ) %>% 
-            addMarkers(
-              lng = object$LON, 
-              lat = object$LAT, 
-              popup = popupMessage(
-                object$ROW_NO, 
-                object$DATETIME, 
-                object$LON, 
-                object$LAT
-              )
-            ) %>% 
-            addPolylines(layerId = "line", color = "red")%>% 
-            addCircleMarkers(
-              lng = vessel$LON, 
-              lat= vessel$LAT, 
-              weight = 2, 
-              opacity = 0.3, 
-              radius = 3, 
-              popup = 
-                popupMessage(
-                  vessel$ROW_NO,
-                  vessel$DATETIME,
-                  vessel$LON,
-                  vessel$LAT
-                ), 
-              clusterOptions = markerClusterOptions()
+        gcIntermediate(c(object$LON,object$LAT), c(object$LON_LAG,object$LAT_LAG),
+                       n=10, 
+                       addStartEnd=TRUE,
+                       sp=TRUE) %>%
+          leaflet() %>% 
+          addProviderTiles(providers$CartoDB.Positron) %>%
+          clearMarkers() %>%
+          addMarkers(
+            lng = object$LON_LAG, 
+            lat = object$LAT_LAG, 
+            popup = popupMessage(
+              object$ROW_NO_LAG, 
+              object$DATETIME_LAG, 
+              object$LON_LAG, 
+              object$LAT_LAG
             )
-        })
+          ) %>% 
+          addMarkers(
+            lng = object$LON, 
+            lat = object$LAT, 
+            popup = popupMessage(
+              object$ROW_NO, 
+              object$DATETIME, 
+              object$LON, 
+              object$LAT
+            )
+          ) %>% 
+          addPolylines(layerId = "line", color = "red")%>% 
+          addCircleMarkers(
+            lng = vessel$LON, 
+            lat= vessel$LAT, 
+            weight = 2, 
+            opacity = 0.3, 
+            radius = 3, 
+            popup = 
+              popupMessage(
+                vessel$ROW_NO,
+                vessel$DATETIME,
+                vessel$LON,
+                vessel$LAT
+              ), 
+            clusterOptions = markerClusterOptions()
+          )
       })
+    })
   })
 }
 

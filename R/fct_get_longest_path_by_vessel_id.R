@@ -1,8 +1,10 @@
 #' The function aimed to find the longest two consecutives observations
 #' for a given vessel
 #' @import dplyr
+#' @export
 getLongestPathByVesselId = function(vesselId, maxTimeInterval = NA) {
-  memoGetVesselById(vesselId)  %>%
+  memFuncs = memoizedFunctions()
+  memFuncs(function(memo) memo$getVesselById(vesselId))  %>%
     (function(x) {
       if(is.na(maxTimeInterval) | maxTimeInterval == 0) {
         return(x)

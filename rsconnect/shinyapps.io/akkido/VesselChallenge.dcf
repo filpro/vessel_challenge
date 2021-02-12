@@ -1,0 +1,13 @@
+name: VesselChallenge
+title: VesselChallenge
+username:
+account: akkido
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3627069
+bundleId: 4214394
+url: https://akkido.shinyapps.io/VesselChallenge/
+when: 1613129609.15596
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .Rprofile|db/ships.zip

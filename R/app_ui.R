@@ -5,6 +5,11 @@
 #' @import shiny
 #' @noRd
 #' @import shiny.semantic
+
+# Below is to let shinyapps.io let know to install additional deps  
+library(shiny.semantic)
+
+
 app_ui <- function(request) {
   tagList(
     # Leave this function for adding external resources
@@ -15,7 +20,7 @@ app_ui <- function(request) {
         pageGridTemplate,
         logo = div(h1("Vessel Challenge"),div(class = "ui divider")),
         title=div(),
-        map = div(mod_leaflet_map_ui("leaflet_map_ui")),
+        map = mod_leaflet_map_ui("leaflet_map_ui"),
         selectors = 
           grid(
             selectorsGridTemplate,
@@ -34,7 +39,7 @@ app_ui <- function(request) {
           container_style = "grid-gap: 1rem;align-content: start;text-overflow: ellipsis;white-space: nowrap;"
         ),
         none=div(),
-        container_style = "grid-gap: 2.5vh;padding-right:5vh",
+        container_style = "grid-gap: 2.5vh;height:100%",
       )
     )
   )

@@ -5,14 +5,14 @@
 #' @export
 #' @importFrom shiny shinyApp
 #' @importFrom golem with_golem_options
+#' @import memoise
 run_app <- function(
   ...
 ) {
   with_golem_options(
     app = shinyApp(
       ui = app_ui, 
-      server = app_server,
-      onStart = purrr::partial(eval, expr = global, envir = globalenv())
+      server = app_server
     ), 
     golem_opts = list(...)
   )

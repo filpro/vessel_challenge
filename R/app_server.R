@@ -7,30 +7,20 @@
 #' @import memoise
 #' @import cachem
 #' @import rappdirs
-#' 
-
-global <- quote({
-  memoGetLongestPathByVesselId = memoise(getLongestPathByVesselId)
-  memoGetVesselTypes = memoise(getVesselTypes)
-  memoGetVesselsByType = memoise(getVesselsByType)
-  memoGetVesselById = memoise(getVesselById)
-})
-
-
+#' @export
 app_server <- function( input, output, session ) {
-
+  memFuncs = memoizedFunctions()
   
-  # List the first level callModules here
   selectedVesselType = reactiveVal(NA)
-  selectedVesselId = reactiveVal(NA)
+  selectedVesselId = reactiveVal(NULL)
   selectedVessel = reactive({
     req(selectedVesselId())
-    future(memoGetVesselById(selectedVesselId()))
+    future(memFuncs(function(memo) memo$getVesselById(selectedVesselId())),seed=TRUE)
   })
   longestPath = reactive({
     req(selectedVesselId())
     req(maxTimeInterval())
-    future(memoGetLongestPathByVesselId(selectedVesselId(),maxTimeInterval() * 60 * 60))
+    future(memFuncs(function(memo) memo$getLongestPathByVesselId(selectedVesselId(),maxTimeInterval() * 60 * 60)),seed=TRUE)
   })
   maxTimeInterval = reactiveVal(NA)
   
@@ -43,12 +33,4 @@ app_server <- function( input, output, session ) {
   callModule(mod_dist_timediff_scatterplot_server, "dist_timediff_scatterplot_ui_1", selectedVessel)
   callModule(mod_longest_path_interval_note_server, "longest_path_interval_note_ui_1", longestPath)
   callModule(mod_longest_path_distance_note_server, "longest_path_distance_note_ui_1",longestPath)
-  
-  session$onSessionEnded(function(close) {
-    forget(memoGetLongestPathByVesselId)
-    forget(memoGetVesselTypes)
-    forget(memoGetVesselsByType)
-    forget(memoGetVesselById)
-  })
-  
 }

@@ -7,8 +7,8 @@ pageGridTemplate <- grid_template(
       c("longest_path_section","map","map"),
       c("longest_path_section", "map", "map")
     ),
-    cols_width = c("30%", "40%", "30%"),
-    rows_height = c("5vh", "13vh","59.5vh", "10vh")
+    cols_width = c("30%", "40%", "auto"),
+    rows_height = c("5%", "85px","60%", "10%")
   ),
   mobile = list(
     areas = rbind(
@@ -17,11 +17,11 @@ pageGridTemplate <- grid_template(
       "map",
       "longest_path_section"
     ),
-    rows_height = c("auto", "auto", "auto", "auto"),
+    rows_height = c("auto", "auto", "40%", "auto"),
     cols_width = c("100%")
   )
 )
-
+#' @importFrom shiny.semantic grid_template
 selectorsGridTemplate <- grid_template(
   default = list(
     areas = rbind(
@@ -40,7 +40,7 @@ selectorsGridTemplate <- grid_template(
     cols_width = c("100%")
   )
 )
-
+#' @importFrom shiny.semantic grid_template
 boxGridTemplate <- grid_template(
   default = list(
     areas = rbind(
@@ -58,7 +58,7 @@ boxGridTemplate <- grid_template(
     cols_width = c("100%")
   )
 )
-
+#' @importFrom shiny.semantic grid_template
 notesSectionGridTemplate = grid_template(
   default = list(
     areas = rbind(
@@ -77,8 +77,8 @@ notesSectionGridTemplate = grid_template(
       "interval",
       "scatterplot"
     ),
-    rows_height = c("100%"),
-    cols_width = c("auto","auto","auto","auto")
+    rows_height = c("auto","auto","auto","auto"),
+    cols_width = c("100%")
   )
 )
 

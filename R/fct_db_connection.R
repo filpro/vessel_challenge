@@ -3,6 +3,7 @@
 #' @import DBI
 #' @import future
 #' @import promises
+#' @export
 openCloseConnection = function() {
   function(FUN){
     con <- dbConnect(RSQLite::SQLite(), "db/vessels.db")

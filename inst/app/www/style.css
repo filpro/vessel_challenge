@@ -1,5 +1,5 @@
 #leaflet_map_ui-map {
-  height: calc(100vh - 40.5vh) !important;
+  height: 96% !important;
 }
 
 .card {
@@ -18,9 +18,10 @@
   padding-top: 1vh;
 }
 
+.icon {
+  color: #428bca;
+}
 
-@media only screen and (max-width: 600px) {
-  body {
-    display: block;
-  }
+body {
+  background-color: rgba(212,218,220,0.1);
 }
