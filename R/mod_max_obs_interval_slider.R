@@ -11,7 +11,7 @@ mod_max_obs_interval_slider_ui <- function(id){
   ns <- NS(id)
   tagList(
     div(class = "time-slider",
-        div(class = "ui horizontal divider", "max time interval"),
+        div(class = "ui horizontal divider", "max time interval in hours"),
         shiny::sliderInput(ns('time_slider'), value = 24, min = 0, max = 48, label = NULL)
     )
   )
