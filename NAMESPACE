@@ -2,6 +2,7 @@
 
 export("%>%")
 export(app_server)
+export(createSqliteDb)
 export(getLongestPathByVesselId)
 export(getVesselById)
 export(openCloseConnection)

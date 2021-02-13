@@ -609,9 +609,10 @@ body {
 <!-- badges: end -->
 
 <p>VesselChallenge is the application to show skills.</p>
-<h2 id="installation">Installation</h2>
-<p>You can install the released version of VesselChallenge from GitHub with:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;filpro/vessel_challenge&quot;</span>)</a></code></pre></div>
+<h2 id="development">Development</h2>
+<p>You need first to:   1) Clone the repo   2) Set up SQLite database (run</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">createSqliteDb</span>()</a></code></pre></div>
+<p>in main folder - this function will unzip csv file and put the data into SQLite). SQLite is a temporary solution, for POC purposes.</p>
 
 </body>
 </html>

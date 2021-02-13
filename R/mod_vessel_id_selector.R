@@ -25,18 +25,15 @@ mod_vessel_id_selector_server <- function(input, output, session, selectedVessel
   
   observeEvent(selectedVesselType(), {
     req(selectedVesselType())
+
     choices = memFuncs(function(memo) memo$getVesselsByType(selectedVesselType())) %>% columnsToNamedVector()
-    if(is.null(selectedVesselId())) {
-      newSelectedVessel = choices[1]
-    } else {
-      newSelectedVessel = c("Select vessel" = NA)
-    }
     updateSelectInput(
       session,"vessel_id",
-      selected= newSelectedVessel, 
+      selected= choices[1], 
       choices = choices, 
       label = ""
     )
+    
   }, ignoreInit = TRUE)
   
   observeEvent(input$vessel_id, {

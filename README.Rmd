@@ -20,10 +20,12 @@ knitr::opts_chunk$set(
 
 VesselChallenge is the application to show skills.
 
-## Installation
+## Development
 
-You can install the released version of VesselChallenge from GitHub with:
-
+You need first to:
+\  1) Clone the repo
+\  2) Set up SQLite database (run 
 ``` r
-devtools::install_github("filpro/vessel_challenge")
+createSqliteDb()
 ```
+in main folder - this function will unzip csv file and put the data into SQLite). SQLite is a temporary solution, for POC purposes.

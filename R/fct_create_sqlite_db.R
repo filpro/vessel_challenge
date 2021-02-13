@@ -1,6 +1,7 @@
 #' @import utils
 #' @import dplyr
 #' @import RSQLite
+#' @export
 createSqliteDb = function() {
   if(!file.exists("db/vessels.db")) {
     unzip("db/ships.zip", exdir = "db")
