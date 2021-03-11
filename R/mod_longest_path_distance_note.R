@@ -30,11 +30,11 @@ mod_longest_path_distance_note_ui <- function(id){
 #' longest_path_distance_note Server Function
 #'
 #' @noRd 
-mod_longest_path_distance_note_server <- function(input, output, session, longestPath){
+mod_longest_path_distance_note_server <- function(input, output, session){
   ns <- session$ns
   
-  observeEvent(longestPath(), {
-    longestPath() %...>% (function(object) {
+  observeEvent(dataStore$longestPath(), {
+    dataStore$longestPath() %...>% (function(object) {
       output$distance = renderText({
         format(round(object$dist, 1), nsmall=1, big.mark=" ")
       })

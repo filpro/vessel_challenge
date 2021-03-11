@@ -23,7 +23,7 @@ mod_dist_timediff_scatterplot_ui <- function(id){
 #'
 #' @noRd 
 #' @import plotly
-mod_dist_timediff_scatterplot_server <- function(input, output, session, selectedVessel){
+mod_dist_timediff_scatterplot_server <- function(input, output, session){
   ns <- session$ns
   
   x <- list(
@@ -34,8 +34,8 @@ mod_dist_timediff_scatterplot_server <- function(input, output, session, selecte
   )
   
   output$dist_timediff = renderPlotly({
-    req(selectedVessel())
-    selectedVessel() %...>% 
+    req(dataStore$selectedVessel())
+    dataStore$selectedVessel() %...>% 
       plot_ly(
         x = ~dist, 
         y = ~TIME_DIFF/60, 

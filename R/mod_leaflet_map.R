@@ -53,7 +53,7 @@ mod_leaflet_map_ui <- function(id){
 #' @noRd 
 #' @import leaflet
 #' @import geosphere
-mod_leaflet_map_server <- function(input, output, session, selectedVesselId, longestPath, selectedVessel){
+mod_leaflet_map_server <- function(input, output, session){
   ns <- session$ns
   
   output$map = renderLeaflet({
@@ -63,10 +63,10 @@ mod_leaflet_map_server <- function(input, output, session, selectedVesselId, lon
   
   
   output$map = renderLeaflet({
-    req(selectedVessel())
-    req(longestPath())
-    longestPath() %...>% (function(object) {
-      selectedVessel() %...>% (function(vessel) {
+    req(dataStore$selectedVessel())
+    req(dataStore$longestPath())
+    dataStore$longestPath() %...>% (function(object) {
+      dataStore$selectedVessel() %...>% (function(vessel) {
         gcIntermediate(c(object$LON,object$LAT), c(object$LON_LAG,object$LAT_LAG),
                        n=10, 
                        addStartEnd=TRUE,

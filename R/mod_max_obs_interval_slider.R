@@ -20,10 +20,10 @@ mod_max_obs_interval_slider_ui <- function(id){
 #' min_obs_interval_slider Server Function
 #'
 #' @noRd 
-mod_max_obs_interval_slider_server <- function(input, output, session,maxTimeInterval){
+mod_max_obs_interval_slider_server <- function(input, output, session){
   ns <- session$ns
   observeEvent(input$time_slider, {
-    maxTimeInterval(input$time_slider)
+    dataStore$setMaxTimeInterval(input$time_slider)
   })
 }
     

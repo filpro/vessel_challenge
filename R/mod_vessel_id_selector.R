@@ -19,14 +19,14 @@ mod_vessel_id_selector_ui <- function(id){
 #'
 #' @noRd 
 #' 
-mod_vessel_id_selector_server <- function(input, output, session, selectedVesselType, selectedVesselId){
+mod_vessel_id_selector_server <- function(input, output, session){
   ns <- session$ns
   memFuncs = memoizedFunctions()
   
-  observeEvent(selectedVesselType(), {
-    req(selectedVesselType())
+  observeEvent(dataStore$selectedVesselType(), {
+    req(dataStore$selectedVesselType())
 
-    choices = memFuncs(function(memo) memo$getVesselsByType(selectedVesselType())) %>% columnsToNamedVector()
+    choices = memFuncs(function(memo) memo$getVesselsByType(dataStore$selectedVesselType())) %>% columnsToNamedVector()
     updateSelectInput(
       session,"vessel_id",
       selected= choices[1], 
@@ -37,7 +37,7 @@ mod_vessel_id_selector_server <- function(input, output, session, selectedVessel
   }, ignoreInit = TRUE)
   
   observeEvent(input$vessel_id, {
-    selectedVesselId(input$vessel_id)
+    dataStore$setSelectedVesselId(input$vessel_id)
   }, ignoreInit = TRUE)
 }
 

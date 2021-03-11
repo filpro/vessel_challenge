@@ -34,11 +34,11 @@ mod_general_note_ui <- function(id){
 #'
 #' @noRd 
 #' @import lubridate
-mod_general_note_server <- function(input, output, session, longestPath){
+mod_general_note_server <- function(input, output, session){
   ns <- session$ns
   
-  observeEvent(longestPath(), {
-    longestPath() %...>% (function(object) {
+  observeEvent(dataStore$longestPath(), {
+    dataStore$longestPath() %...>% (function(object) {
       
       output$ship_name = renderText({
         object$SHIPNAME

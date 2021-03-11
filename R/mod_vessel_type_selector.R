@@ -18,7 +18,7 @@ mod_vessel_type_selector_ui <- function(id){
 #' vessel_type_selector Server Function
 #'
 #' @noRd 
-mod_vessel_type_selector_server <- function(input, output, session, selectedVesselType){
+mod_vessel_type_selector_server <- function(input, output, session){
   ns <- session$ns
   memFuncs = memoizedFunctions()
   
@@ -30,7 +30,7 @@ mod_vessel_type_selector_server <- function(input, output, session, selectedVess
   
   observeEvent(input$vessel_type, {
     req(input$vessel_type)
-    selectedVesselType(input$vessel_type)
+    dataStore$setSelectedVesselType(input$vessel_type)
   })
 }
 

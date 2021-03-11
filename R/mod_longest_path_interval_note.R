@@ -31,10 +31,10 @@ mod_longest_path_interval_note_ui <- function(id){
 #' longest_path_interval_note Server Function
 #'
 #' @noRd 
-mod_longest_path_interval_note_server <- function(input, output, session,longestPath){
+mod_longest_path_interval_note_server <- function(input, output, session){
   ns <- session$ns
-  observeEvent(longestPath(), {
-    longestPath() %...>% (function(object) {
+  observeEvent(dataStore$longestPath(), {
+    dataStore$longestPath() %...>% (function(object) {
       output$time_interval = renderText({
         interval(object$DATETIME_LAG, object$DATETIME) %>% 
           as.duration() %>% 
